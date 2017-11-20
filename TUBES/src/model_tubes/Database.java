@@ -13,22 +13,40 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 /**
  *
- * @author Adhi Jr
+ * @author nabilaannisa
  */
 public class Database {
-    public static Connection con;
-    public static Statement stm;
-    public static void main(String args[]){
+    private String server = "jdbc:mysql://localhost:3306/RestoImpal";
+    private String dbuser = "root";
+    private String dbpasswd = "";
+    private Statement statement = null;
+    private Connection conn = null;
+    private ResultSet rs = null;
+
+    public Database() {
         try {
-            String url ="jdbc:mysql://localhost/";
-            String user="root";
-            String pass="";
-            Class.forName("com.mysql.jdbc.Driver");
-            con =DriverManager.getConnection(url,user,pass);
-            stm = con.createStatement();
-            System.out.println("koneksi berhasil;");
+            conn = DriverManager.getConnection(server, dbuser, dbpasswd);
+            statement = conn.createStatement();
         } catch (Exception e) {
-            System.err.println("koneksi gagal" +e.getMessage());
+            System.out.println(e.getMessage());
+        }    
+        
+    }
+    
+    public ResultSet getData(String SQLString) {
+        try {
+            rs = statement.executeQuery(SQLString);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return rs;
+    }
+    
+    public void query(String SQLString) {
+        try {
+            statement.executeUpdate(SQLString);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
     
