@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2017 at 06:30 PM
+-- Generation Time: Nov 29, 2017 at 02:18 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -45,21 +45,8 @@ INSERT INTO `bahan` (`kode`, `nama`, `jumlah`) VALUES
 ('4', 'Kentang', 15),
 ('5', 'Wortel', 10),
 ('6', 'Gula', 5),
-('7', 'Nori', 20);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `customer`
---
-
-CREATE TABLE `customer` (
-  `id` int(13) NOT NULL,
-  `daftarmenu` varchar(30) NOT NULL,
-  `jumlahmenu` int(11) NOT NULL,
-  `hargamenu` int(11) NOT NULL,
-  `total` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+('7', 'Pasta', 10),
+('8', 'Coklat', 20);
 
 -- --------------------------------------------------------
 
@@ -101,7 +88,26 @@ CREATE TABLE `pegawai` (
 --
 
 INSERT INTO `pegawai` (`nama_Pegawai`, `id_Pegawai`, `pwd_Pegawai`) VALUES
-('adhiasu', '12312', '123');
+('Rahmat Adhi Jumara', '123', '123');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaksi`
+--
+
+CREATE TABLE `transaksi` (
+  `namamenu` varchar(30) NOT NULL,
+  `jumlahmenu` int(10) NOT NULL,
+  `totalbayar` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`namamenu`, `jumlahmenu`, `totalbayar`) VALUES
+('Ramen,Cocktail', 15, 80000);
 
 --
 -- Indexes for dumped tables
@@ -112,12 +118,6 @@ INSERT INTO `pegawai` (`nama_Pegawai`, `id_Pegawai`, `pwd_Pegawai`) VALUES
 --
 ALTER TABLE `bahan`
   ADD PRIMARY KEY (`kode`);
-
---
--- Indexes for table `customer`
---
-ALTER TABLE `customer`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `menu`
@@ -132,14 +132,10 @@ ALTER TABLE `pegawai`
   ADD PRIMARY KEY (`id_Pegawai`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Indexes for table `transaksi`
 --
-
---
--- AUTO_INCREMENT for table `customer`
---
-ALTER TABLE `customer`
-  MODIFY `id` int(13) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `transaksi`
+  ADD PRIMARY KEY (`namamenu`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
